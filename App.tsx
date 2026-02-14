@@ -21,11 +21,12 @@ import RoleRoute from './routes/RoleRoute';
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const {accessToken} = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     // Attempt to hydrate auth state from storage
-    const token = localStorage.getItem('access_token');
-    if (token) {
+   
+    if (accessToken) {
       dispatch(authActions.getCurrentUserRequest());
     }
   }, [dispatch]);
