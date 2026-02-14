@@ -1,0 +1,5 @@
+{
+  "name": "Enterprise Workflow & Approval System",
+  "description": "A comprehensive enterprise-grade task management and approval workflow system featuring role-based access control, real-time notification polling, and advanced state management using Redux-Saga.",
+  "requestFramePermissions": []
+}
