@@ -2,16 +2,13 @@ import axios from "axios";
 import { User } from './authTypes';
 
 const API_BASE_URL = 'http://localhost:8080/api';
-
 const MOCK_USERS: User[] = [
   { id: '1', name: 'John Employee', email: 'employee@company.com', role: 'EMPLOYEE', createdAt: new Date().toISOString() },
   { id: '2', name: 'Sarah Manager', email: 'manager@company.com', role: 'MANAGER', createdAt: new Date().toISOString() },
 ];
-
 const api = axios.create({
   baseURL: API_BASE_URL,
 });
-
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('access_token');
   if (token) {
@@ -19,9 +16,7 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
-
 const isNetworkError = (error: any) => !error.response && error.code !== 'ECONNABORTED';
-
 export const mockAuthApi = {
   login: async ({ email, password }: any) => {
     await new Promise(r => setTimeout(r, 800));
