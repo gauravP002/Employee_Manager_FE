@@ -10,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth','tasks'], // 👈 only persist auth slice (change if needed)
+  whitelist: ['auth','tasks'], // state  will be preserved even we refresh the page
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
