@@ -32,6 +32,7 @@ function* handleLogout(): Generator<any, any, any> {
  
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
+  localStorage.removeItem('mock_tasks');
   yield put(authActions.logoutSuccess());
   yield put(taskActions.clearTask());
  
