@@ -2,6 +2,7 @@
 import { takeLatest, call, put, race, delay, take } from 'redux-saga/effects';
 import { authActions } from './authSlice';
 import { authApi } from './authApi';
+import { taskActions } from '../tasks/taskSlice';
 
 function* handleLogin(action: any): Generator<any, any, any> {
   try {
@@ -28,9 +29,12 @@ function* handleGetCurrentUser(): Generator<any, any, any> {
 }
 
 function* handleLogout(): Generator<any, any, any> {
+ 
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
   yield put(authActions.logoutSuccess());
+  yield put(taskActions.clearTask());
+ 
 }
 
 function* watchTokenExpiry() {

@@ -11,7 +11,7 @@ const initialState: TaskState = {
 };
 
 const taskSlice = createSlice({
-  name: 'tasks',
+  name: "tasks",
   initialState,
   reducers: {
     fetchTasksRequest: (state) => {
@@ -35,11 +35,15 @@ const taskSlice = createSlice({
       state.loading = false;
       state.items.unshift(action.payload);
     },
-    updateTaskStatusRequest: (state, _action: PayloadAction<{ id: string; status: Task['status'] }>) => {},
+    updateTaskStatusRequest: (
+      state,
+      _action: PayloadAction<{ id: string; status: Task["status"] }>,
+    ) => {},
     updateTaskStatusSuccess: (state, action: PayloadAction<Task>) => {
-      const index = state.items.findIndex(t => t.id === action.payload.id);
+      const index = state.items.findIndex((t) => t.id === action.payload.id);
       if (index !== -1) state.items[index] = action.payload;
-      if (state.currentTask?.id === action.payload.id) state.currentTask = action.payload;
+      if (state.currentTask?.id === action.payload.id)
+        state.currentTask = action.payload;
     },
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
@@ -47,7 +51,14 @@ const taskSlice = createSlice({
     taskError: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
-    }
+    },
+    clearTask: (state, action: PayloadAction<string>) => {
+      state.items = [];
+      state.loading = false;
+      state.error = null;
+      state.currentTask = null;
+      state.searchQuery = "";
+    },
   },
 });
 
